@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee</title>
+    <style>
+        .border{
+            border:1px solid black;
+            padding:10px;
+        }
+        .center{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .title{
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .a{
+            display: flex;
+            justify-content: space-between;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <div class="title">Enter Employee Details</div>
+        <form>
+            <div class="border">
+                <div class="a">
+                    <label for="empname">Employee name</label>
+                    <input type="text" name="empname">
+                </div>
+                
+                <br>
+                <div class="a">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" name="dob">
+                </div>
+                
+                <br>
+                <div class="a">
+                    <label for="job">Job title</label>
+                    <input type="text" name="job">
+                </div>
+                
+                <br>
+                <div class="a">
+                    <label for="email">Email</label>
+                    <input type="email" name="email">
+                </div>
+                
+                <br>
+                <div class="a">
+                    <label for="mobile">Mobile number</label>
+                    <input type="tel" name="mobile">
+                </div>
+                
+                <br>
+                <div class="a">
+                    <label for="gender">Gender</label>
+                    <select name="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                
+                <br>
+                <div class="a">
+                    <label for="qualification">Qualification</label>
+                    <input type="text" name="qualification">
+                </div>
+                
+                <br>
+                <div class="a">
+                    <label for="pastexperience">Past organization experience</label>
+                    <input type="text" name="pastexperience">
+                </div>
+                
+                <br>
+                <div class="a">
+                    <label for="joinyear">Current organization join year</label>
+                    <input type="text" name="joinyear">
+                </div>
+                
+                <br>
+                <div class="a">
+                    <button type="submit">Submit</button>
+                </div>
+            </div>
+            
+            <br>
+            <div class="a">
+                <button><a href="data.html">Display employee details</a></button>
+            </div>
+            
+        </form>
+        
+    </div>
+    
+    <script>
+        const post=async(data)=>{
+            const res=await fetch('http://localhost:3000',{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify(data)
+            })
+            const da=res.json();
+            console.log(da);
+        }
+        const form=document.querySelector('form')
+        form.addEventListener('submit',async(e)=>{
+            e.preventDefault();
+            const formData=new FormData(form);
+            const data=Object.fromEntries(formData);
+            post(data);
+        })
+    </script>
+</body>
+</html>

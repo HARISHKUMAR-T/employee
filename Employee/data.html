@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee details</title>
+    <style>
+        th,td,table,tr,thead,tbody{
+            border-collapse: collapse;
+        }
+        th,td{
+            padding: 5px;
+        }
+        th{
+            text-transform: uppercase;
+        }
+        .center{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .title{
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <div class="title">Employee Details from databse</div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Dob</th>
+                    <th>age</th>
+                    <th>Job title</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Gender</th>
+                    <th>Qualification</th>
+                    <th>Past experience</th>
+                    <th>Join year</th>
+                    <th>Current experience</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <br>
+        <button><a href="index.html">Go Back</a></button>
+    </div>
+    
+    <script>
+        const get=async()=>{
+            const res=await fetch('http://localhost:3000');
+            const dataRes=await res.json();
+            console.log(dataRes);
+            const tbody=document.querySelector('tbody');
+            content="";
+            dataRes.forEach(e => {
+                content+=`
+                <tr>
+                <td>${e.empname}</td>
+                <td>${e.dob}</td>
+                <td>${e.age}</td>
+                <td>${e.job}</td>
+                <td>${e.email}</td>
+                <td>${e.mobile}</td>
+                <td>${e.gender}</td>
+                <td>${e.qualification}</td>
+                <td>${e.pastexperience}</td>
+                <td>${e.joinyear}</td>
+                <td>${e.currentexperience}</td>
+                </tr>
+                `
+            });
+            tbody.innerHTML=content;
+        }
+        get();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+empname varchar,dob varchar,job varchar,email varchar,mobile bigint,gender varchar,qualification varchar,pastexperience int,joinyear int,age int,currentexperience int
